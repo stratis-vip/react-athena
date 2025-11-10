@@ -1,4 +1,4 @@
-import type { Question } from "./strongfold.tsx~";
+import type { Question } from "herowars-library";
 
 export const evenMoreGeneralQuestions: Question[] = [
   {

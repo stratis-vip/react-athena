@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 import { useEffect, useState } from "react";
-import type { TimeUser } from "../data/users.d";
+import type { TimeUser } from "herowars-library";
 
 const User: React.FC<{ user: TimeUser; showWarTime: boolean }> = ({
   user,

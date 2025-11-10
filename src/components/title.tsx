@@ -2,7 +2,7 @@ import logo from "../athena.png";
 import { useState, useEffect } from "react";
 import json from "../../package.json";
 import { users } from "../data/users";
-import type { User } from "../data/users.d";
+import type { User } from "herowars-library";
 
 const Title = () => {
   const [versionShow, setVersion] = useState<boolean>(true);

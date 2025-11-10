@@ -1,4 +1,4 @@
-import { EffectCallback, useEffect, useRef } from "react";
+import { type EffectCallback, useEffect, useRef } from "react";
 
 function deepEqual(a: unknown, b: unknown): boolean {
   if (Object.is(a, b)) return true; // handles primitives and NaN

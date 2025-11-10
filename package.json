@@ -2,7 +2,6 @@
   "name": "new-athena",
   "version": "4.0.11",
   "league": "gold",
-  "packageManager": "yarn@4.11.0",
   "private": true,
   "type": "module",
   "scripts": {
