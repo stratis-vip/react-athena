@@ -2,6 +2,5 @@
 name = "new-athena"
 compatibility_date = "2025-11-10"
 
-[pages]
-# Αυτό λέει στο Wrangler να ανεβάσει static files
-directory = "dist"
+[assets]
+directory = "./dist"
