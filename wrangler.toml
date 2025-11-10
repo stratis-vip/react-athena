@@ -1,5 +1,5 @@
 # wrangler.toml
-name = "new-athena"
+name = "vite-athena"
 compatibility_date = "2025-11-10"
 
 [assets]
