@@ -1,6 +1,3 @@
-# wrangler.toml
 name = "new-athena"
-compatibility_date = "2025-11-10"
+pages_build_output_dir = "dist"
 
-[assets]
-directory = "./dist"
