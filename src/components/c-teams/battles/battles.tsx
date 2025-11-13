@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import Team from "./team";
+import Team from "./team-of-heroes";
 import { allHeros } from "herowars-library";
 import type { Battle, HeroTeam } from "herowars-library";
 import { areAllIn, type Filter } from "./battles-utils";
@@ -18,62 +18,64 @@ const setFiveDaysBefore = (): string => {
 
 const Battles = () => {
   //do i need to refresh the db?
-  const filter = useFilterState(s => s.filterState)
-  const setFilter = useFilterState(s => s.setFilterState)
+  const filter = useFilterState((s) => s.filterState);
+  const setFilter = useFilterState((s) => s.setFilterState);
 
   const [battleObject, setBattleObject] = useState<Battle<HeroTeam>[]>([]);
-  const [filteredBObject, setFilteredBObject] = useState<Battle<HeroTeam>[]>([])
+  const [filteredBObject, setFilteredBObject] = useState<Battle<HeroTeam>[]>(
+    [],
+  );
   const [dt, setDate] = useState<string>(setFiveDaysBefore());
 
   useDeepCompareEffect(() => {
-    console.log(JSON.stringify(filter, null, 2))
-  }, [filter])
-  //change the date so we need to filter DB 
+    console.log(JSON.stringify(filter, null, 2));
+  }, [filter]);
+  //change the date so we need to filter DB
   useEffect(() => {
     if (!dt) return;
 
-    const dateToFilterDB = getIntDate(new Date(dt))
-    const tempDb = resultHeroes.records.filter(b => b.date >= dateToFilterDB);
-    setBattleObject(tempDb)
-    setFilteredBObject(tempDb)
+    const dateToFilterDB = getIntDate(new Date(dt));
+    const tempDb = resultHeroes.records.filter((b) => b.date >= dateToFilterDB);
+    setBattleObject(tempDb);
+    setFilteredBObject(tempDb);
   }, [dt]);
 
   useDeepCompareEffect(() => {
     console.log("battleObject is changed", battleObject.length);
     if (battleObject.length > 0) {
-      console.log(battleObject[0].attacker.heroLineUp, battleObject[0].attacker.name)
+      console.log(
+        battleObject[0].attacker.heroLineUp,
+        battleObject[0].attacker.name,
+      );
     }
-  }, [battleObject])
-
+  }, [battleObject]);
 
   const filterByNames = (f: Filter, obj: Battle<HeroTeam>[]) => {
-    const o = [...obj]
-    return o.filter(b =>
-      b.attacker.name.toLowerCase().includes(f.att.name.toLowerCase()) &&
-      b.defender.name.toLowerCase().includes(f.def.name.toLowerCase())
+    const o = [...obj];
+    return o.filter(
+      (b) =>
+        b.attacker.name.toLowerCase().includes(f.att.name.toLowerCase()) &&
+        b.defender.name.toLowerCase().includes(f.def.name.toLowerCase()),
     );
-  }
+  };
 
   const filterByTeams = (_: Filter, obj: Battle<HeroTeam>[]) => {
-    const lookupAttTeam = filter.att.team.map(h => h.short.toLowerCase())
-    const lookupDefTeam = filter.def.team.map(h => h.short.toLowerCase())
-    const o = [...obj]
+    const lookupAttTeam = filter.att.team.map((h) => h.short.toLowerCase());
+    const lookupDefTeam = filter.def.team.map((h) => h.short.toLowerCase());
+    const o = [...obj];
     return o.filter(
-      b =>
+      (b) =>
         areAllIn(lookupAttTeam, b.attacker.heroLineUp) &&
-        areAllIn(lookupDefTeam, b.defender.heroLineUp)
-    )
-  }
-
-
+        areAllIn(lookupDefTeam, b.defender.heroLineUp),
+    );
+  };
 
   useDeepCompareEffect(() => {
-    const tempByNames = filterByNames(filter, battleObject)
-    const temp = filterByTeams(filter, tempByNames)
+    const tempByNames = filterByNames(filter, battleObject);
+    const temp = filterByTeams(filter, tempByNames);
 
-    setFilteredBObject(temp)
-  }, [filter, battleObject])
-
+    setFilteredBObject(temp);
+  }, [filter, battleObject]);
 
   const [hide, setHide] = useState(false);
   const [hideHeros, setHideHeros] = useState(true);
@@ -83,7 +85,7 @@ const Battles = () => {
       ...prev,
       att: { ...prev.att, name },
     }));
-  }
+  };
 
   const handleDefenderNameChange = (name: string) => {
     setFilter((prev) => ({
@@ -106,8 +108,7 @@ const Battles = () => {
     <div>
       <div>{dt}</div>
       <div className="flex justify-center ">
-        <div className="text-4xl font-extrabold">
-          Battles record         </div>
+        <div className="text-4xl font-extrabold">Battles record </div>
         <div
           className="ml-3 flex  items-end cursor-pointer text-lg text-blue-500"
           onClick={() => setHide((h) => !h)}
@@ -169,7 +170,7 @@ const Battles = () => {
             <div className="mx-5 flex flex-wrap flex-row-reverse w-full">
               {allHeros.map((h) => (
                 <div
-                  className="flex-[1_1_140px] shadow border-1 rounded-lg mr-2"
+                  className="flex-[1_1_140px] shadow border rounded-lg mr-2"
                   key={h.id}
                 >
                   <span className="font-bold">{h.short}</span>
@@ -299,4 +300,3 @@ const Battles = () => {
 };
 
 export default Battles;
-

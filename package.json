@@ -1,6 +1,6 @@
 {
   "name": "new-athena",
-  "version": "4.0.11",
+  "version": "4.0.12",
   "league": "gold",
   "private": true,
   "type": "module",
@@ -20,6 +20,7 @@
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.9.5",
     "tailwindcss": "^4.1.17",
+    "uuid": "^13.0.0",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
@@ -28,6 +29,7 @@
     "@types/node": "^24.10.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
+    "@types/uuid": "^10.0.0",
     "@vitejs/plugin-react": "^5.1.0",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^5.2.0",

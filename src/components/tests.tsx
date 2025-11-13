@@ -1,39 +1,38 @@
-import { type Hero, allHeros, allPets } from "herowars-library";
-import AvatarHeroPet from "./avatar-hero-pet";
-import AvatarHero from "./avatar-hero";
-import BreakPoint from "./break-point";
-import Battles from "./c-teams/battles/battles"
+import AvatarTitan from "./avatar-titan";
+import { allTitans, type TitanTeam } from "herowars-library";
+import TeamOfTitans from "./c-teams/battles/team-of-titans";
 
 const Tests: React.FC = () => {
-  const heros = [
-    { name: "stratis", id: 1 },
-    { name: "stratos", id: 2 },
-    { name: "stranos", id: 3 },
-  ];
-
-  const searchHero = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.value;
-    if (name.length > 2) {
-      const filteredHeroes = heros.filter((h) =>
-        h.name.toLowerCase().includes(name.toLowerCase()),
-      ) as [Hero];
-      console.log(filteredHeroes);
-    }
+  const tTeam: TitanTeam = {
+    id: 1,
+    name: "first",
+    power: 100,
+    titanLineUp: ["ara", "vul", "ign", "vul", "ten"],
+    totem: [
+      {
+        totemType: "f",
+        stars: 6,
+        level: 130,
+        fusion: [
+          {
+            skill: "",
+            level: 1,
+          },
+        ],
+      },
+    ],
   };
-
   return (
     <div>
       <h1>Tests Page</h1>
-      <input
-        className="border p-1"
-        type="text"
-        onChange={searchHero}
-        placeholder="hero name"
+
+      <AvatarTitan titan={allTitans[0]} />
+      <TeamOfTitans
+        date="20251011"
+        parentTeam={tTeam}
+        reverse={false}
+        points={20}
       />
-      <AvatarHero hero={allHeros[1]} />
-      <AvatarHeroPet hero={allHeros[3]} pet={allPets[2]} />
-      <BreakPoint />
-      <Battles />
     </div>
   );
 };

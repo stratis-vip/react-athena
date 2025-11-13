@@ -18,6 +18,7 @@ import CTeams from "./c-teams/index.tsx";
 import Guides from "./guides.tsx";
 import TimeTable from "./time-table.tsx";
 import Tests from "./tests.tsx";
+import Book from "./book.tsx";
 
 const ToLink: React.FC<{ path: string; title: string }> = ({ path, title }) => {
   return (
@@ -76,6 +77,7 @@ const RouterComponent: React.FC = () => {
         <Route path="program" element={<Program />} />
         <Route path="time-table" element={<TimeTable />} />
         <Route path="tests" element={<Tests />} />
+        <Route path="book" element={<Book />} />
       </Routes>
 
       <Outlet />

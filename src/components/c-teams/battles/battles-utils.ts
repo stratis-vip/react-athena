@@ -1,9 +1,21 @@
 import { resultHeroes } from "./hero-records";
 
 import type { Hero } from "herowars-library";
-export const areAllIn = <T>(a: readonly T[], b: readonly T[]): boolean => {
-  const bSet = new Set(b);
-  return a.every((item) => bSet.has(item));
+export const areAllIn = <T>(
+  lookFor: readonly T[],
+  lookTo: readonly T[],
+): boolean => {
+  const bSet = new Set(lookTo);
+  const r = lookFor.every((item) => bSet.has(item));
+  return r;
+};
+
+export const anyOfIn = <T>(
+  lookFor: readonly T[],
+  lookTo: readonly T[],
+): boolean => {
+  const lookToSet = new Set(lookTo);
+  return lookFor.some((item) => lookToSet.has(item));
 };
 
 export const getIntDate = (date: Date = new Date()): number => {

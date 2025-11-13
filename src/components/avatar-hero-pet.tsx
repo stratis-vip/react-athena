@@ -29,7 +29,7 @@ const AvatarHeroPet: React.FC<{ hero: Hero; pet: Pet }> = ({ hero, pet }) => {
               src={images[hero.id]}
               alt={hero.name}
             />
-            <div className="absolute top-[-12px] ">
+            <div className="absolute top-3] ">
               {pet.id > 0 ? (
                 <img
                   className=" rounded-full bg-black"
